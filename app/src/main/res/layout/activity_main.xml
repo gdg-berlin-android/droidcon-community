@@ -97,6 +97,18 @@
         app:layout_constraintBottom_toBottomOf="@+id/companyInput"
         app:layout_constraintTop_toTopOf="@id/companyInput" />
 
+    <!-- TODO make this app GDPR complaint -->
+    <CheckBox
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Do you accept terms and conditions?"
+        android:layout_marginTop="16dp"
+        android:checked="true"
+        android:enabled="false"
+        android:textColor="@color/black"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/companyLabel"/>
 
     <ImageView
         android:id="@+id/imagePreview"
