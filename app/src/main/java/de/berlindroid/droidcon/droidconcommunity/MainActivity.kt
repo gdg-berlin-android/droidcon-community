@@ -3,6 +3,7 @@ package de.berlindroid.droidcon.droidconcommunity
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,6 +12,7 @@ import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import android.graphics.Bitmap
+import android.preference.PreferenceManager
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -63,6 +65,9 @@ class MainActivity : AppCompatActivity() {
             val checkboxState = acceptTermsCheckbox.isChecked
             val name = nameinput.text.toString()
             val lastname = lastNameinput.text.toString()
+
+            val prefManager = PreferenceManager.getDefaultSharedPreferences(this)
+            prefManager.edit().putString("name", name).putString("lastname", lastname).apply()
         }
     }
 

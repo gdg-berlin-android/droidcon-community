@@ -126,8 +126,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@android:color/holo_red_light"
+        android:background="@drawable/round_button"
         android:text="Apply"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/main_button_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
