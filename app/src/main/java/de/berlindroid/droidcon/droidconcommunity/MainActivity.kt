@@ -17,6 +17,6 @@ class MainActivity : AppCompatActivity() {
 
         Log.d("ainActivity", nameTV.text.toString())
         Log.d("MainActivity", lastnametv.text.toString())
-        //MESSAGE TO FUTERE you can add it to the db
+        //MESSAGE TO FUTURE you can add it to the db
     }
 }

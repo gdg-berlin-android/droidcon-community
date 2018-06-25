@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,12 +22,12 @@
 
     <EditText
         android:id="@+id/name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:hint="last name"
-        android:text="Your Name"
+        tools:text="Your Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.376"
         app:layout_constraintStart_toEndOf="@+id/nameTV"
@@ -44,7 +45,7 @@
 
     <EditText
         android:id="@+id/lastnametv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
@@ -58,9 +59,82 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintDimensionRatio="h:1,1"
+        android:maxWidth="128dp"
         android:layout_marginTop="8dp"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@mipmap/ic_launcher_round"
         tools:layout_editor_absoluteX="168dp" />
+
+
+    <EditText
+        android:id="@+id/firstnametv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/lastnametv"
+        app:layout_constraintStart_toStartOf="@id/lastnametv"
+        app:layout_constraintEnd_toEndOf="@id/lastnametv"/>
+
+    <TextView
+        android:id="@+id/firstname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First name"
+        app:layout_constraintBottom_toBottomOf="@id/firstnametv"
+        app:layout_constraintStart_toStartOf="@id/lastname"/>
+
+    <EditText
+        android:id="@+id/age2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/age"
+        app:layout_constraintTop_toTopOf="@id/age"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/firstname"
+        app:layout_constraintStart_toStartOf="@id/firstname"
+        android:text="Age"/>
+
+    <EditText
+        android:id="@+id/agetv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/firstnametv"
+        app:layout_constraintStart_toStartOf="@id/age"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="sometihng"
+        android:inputType="number"/>
+
+    <TextView
+        android:id="@+id/companytv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company"
+        app:layout_constraintTop_toBottomOf="@id/age"/>
+
+    <EditText
+        android:id="@+id/companyet"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/agetv"/>
+
+    <TextView
+        android:id="@+id/titletv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        app:layout_constraintTop_toBottomOf="@id/companytv" />
+
+    <EditText
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/companytv" />
+
+
+    <!--TODO I completely fucked up the xml please help meeeeeeeee!!!!-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
