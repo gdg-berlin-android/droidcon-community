@@ -15,8 +15,14 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        Log.d("ainActivity", nameTV.text.toString())
-        Log.d("MainActivity", lastnametv.text.toString())
+        /*Log.d("ainActivity", nameTV.text.toString())
+        Log.d("MainActivity", lastnametv.text.toString())*/
+
         //MESSAGE TO FUTURE you can add it to the db
+        applyButton.setOnClickListener { apply() }
+    }
+
+    private fun apply() {
+
     }
 }

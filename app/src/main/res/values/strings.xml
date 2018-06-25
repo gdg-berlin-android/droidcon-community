@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Droidcon Community</string>
+    <string name="last_name_label">Last Name:</string>
+    <string name="name_label">Name:</string>
+    <string name="age_label">Age:</string>
+    <string name="company_label">Company:</string>
 </resources>
