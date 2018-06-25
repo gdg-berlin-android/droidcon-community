@@ -1,8 +1,11 @@
 package de.berlindroid.droidcon.droidconcommunity
 
+import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import info.metadude.kotlin.library.droidconberlin.ApiModule
@@ -26,11 +29,14 @@ class ScheduleActivity : AppCompatActivity(){
 
         val okHttpClient = OkHttpClient.Builder().build()
         val api = ApiModule.provideApiService(apiUrl, okHttpClient)
+        val adapter = ScheduleAdapter(this)
         api.getSessions().enqueue(object: retrofit2.Callback<List<Session>> {
 
             override fun onResponse(call: Call<List<Session>>?, response: Response<List<Session>>?) {
                 response?.body()?.forEach {
-                    // TODO: Add the stuff to the adapter
+                    adapter.clear()
+                    //adapter.addAll(response.body()) TODO transform session entitz to session model and then add all. good luck have fun
+
                 }
             }
 
@@ -46,7 +52,26 @@ class ScheduleActivity : AppCompatActivity(){
 
     //TODO: Write an adapter here
 
-    class ScheduleAdapter: RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder> {
+    class ScheduleAdapter constructor(var context: Context): RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
+        lateinit var list: MutableList<de.berlindroid.droidcon.droidconcommunity.Session>
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder {
+            return ScheduleViewHolder(LayoutInflater.from(context).inflate(R.layout.item_session, parent, false))
+        }
+
+        override fun getItemCount(): Int = list.size
+
+        override fun onBindViewHolder(holder: ScheduleViewHolder, position: Int) {
+            holder.bind(list.get(position))
+        }
+
+        fun clear() {
+            list.clear()
+        }
+
+        fun addAll(collection: Collection<de.berlindroid.droidcon.droidconcommunity.Session>) {
+            list.addAll(collection)
+        }
 
         class ScheduleViewHolder(view: View) {
 
