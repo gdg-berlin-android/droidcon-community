@@ -60,6 +60,9 @@ class MainActivity : AppCompatActivity() {
     private fun apply() {
         if (validate()) {
             //TODO: save a data
+            val checkboxState = acceptTermsCheckbox.isChecked
+            val name = nameinput.text.toString()
+            val lastname = lastNameinput.text.toString()
         }
     }
 
