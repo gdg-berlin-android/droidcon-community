@@ -8,5 +8,5 @@ const val SERVER_URL = "https://cfp.droidcon.de/rest/sessions.json"
 
 interface GitHubService {
     @GET("users/{user}/repos")
-    fun listRepos(@Path("user") user: String): Call<List<Session>>
+    fun listRepos(@Path("user") user: String): Call
 }
