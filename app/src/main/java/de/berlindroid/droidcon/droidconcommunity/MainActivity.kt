@@ -1,6 +1,7 @@
 package de.berlindroid.droidcon.droidconcommunity
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -9,10 +10,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
+import android.graphics.Bitmap
 
 class MainActivity : AppCompatActivity() {
     companion object {
-        const val CAMERA_REQUEST_CODE = 1
+        private const val CAMERA_REQUEST_CODE = 1
+        private const val CAMERA_RESULT_REQUEST_CODE = 2
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,6 +25,14 @@ class MainActivity : AppCompatActivity() {
         applyButton.setOnClickListener { apply() }
 
         main_button_picture.setOnClickListener { takePicture() }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == CAMERA_RESULT_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            val imageBitmap = data!!.extras.get("data") as Bitmap
+            imagePreview.setImageBitmap(imageBitmap)
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -40,7 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun takePicture() {
         //TODO :)
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            startActivity(Intent(MediaStore.ACTION_IMAGE_CAPTURE))
+            startActivityForResult(Intent(MediaStore.ACTION_IMAGE_CAPTURE), CAMERA_RESULT_REQUEST_CODE)
         } else {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
         }

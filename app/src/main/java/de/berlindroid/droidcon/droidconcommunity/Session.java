@@ -3,6 +3,7 @@ package de.berlindroid.droidcon.droidconcommunity;
 
 import java.util.List;
 
+// TODO: 25/06/18 Can I haz data clazz?
 public class Session {
 
     private String updatedDate;

@@ -98,6 +98,15 @@
         app:layout_constraintTop_toTopOf="@id/companyInput" />
 
 
+    <ImageView
+        android:id="@+id/imagePreview"
+        android:contentDescription="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/camera_image_preview"
+        app:layout_constraintTop_toBottomOf="@+id/companyInput"
+        app:layout_constraintBottom_toTopOf="@+id/applyButton"/>
+
     <Button
         android:id="@+id/applyButton"
         android:layout_width="150dp"
