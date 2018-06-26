@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Droidcon Community</string>
     <string name="last_name_label">Last Name:</string>
-    <string name="name_label">Name:</string>
+    <string name="name_label">First Name:</string>
     <string name="age_label">Age:</string>
     <string name="company_label">Company:</string>
+    <string name="apply">Apply</string>
+    <string name="take_a_picture">Take a Picture!</string>
+    <string name="do_you_accept_terms_and_conditions">Do you accept terms and conditions?</string>
 </resources>

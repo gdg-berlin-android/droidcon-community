@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="16dp"
     tools:context=".MainActivity">
 
 
@@ -12,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.26" />
+        app:layout_constraintGuide_percent="0.25" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/layoutName"
@@ -32,7 +33,7 @@
         android:id="@+id/layoutLastName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="4dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
         app:layout_constraintTop_toBottomOf="@id/layoutName">
@@ -48,11 +49,11 @@
         android:id="@+id/ageinput"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@id/lastNameLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutLastName" />
 
     <EditText
         android:id="@+id/companyInput"
@@ -69,6 +70,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name_label"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutName"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/layoutName" />
 
     <TextView
@@ -77,6 +80,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/last_name_label"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutLastName"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/layoutLastName" />
 
     <TextView
@@ -102,46 +107,50 @@
         android:id="@+id/acceptTermsCheckbox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Do you accept terms and conditions?"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:checked="true"
+        android:text="@string/do_you_accept_terms_and_conditions"
         android:textColor="@color/black"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/companyLabel"/>
+        app:layout_constraintTop_toBottomOf="@id/companyLabel" />
 
     <ImageView
         android:id="@+id/imagePreview"
-        android:contentDescription="@null"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:contentDescription="@null"
         android:minHeight="@dimen/camera_image_preview"
-        app:layout_constraintTop_toBottomOf="@+id/companyInput"
-        app:layout_constraintBottom_toTopOf="@+id/applyButton"/>
+        app:layout_constraintBottom_toTopOf="@+id/applyButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acceptTermsCheckbox"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/applyButton"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/round_button"
-        android:text="Apply"
+        android:text="@string/apply"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@id/main_button_picture"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/main_button_picture" />
 
     <Button
         android:id="@+id/main_button_picture"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:text="Take a Picture!"
+        android:layout_width="149dp"
+        android:layout_height="50dp"
+        android:background="@drawable/round_button"
+        android:textColor="@color/white"
+        android:text="@string/take_a_picture"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/applyButton"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
 
