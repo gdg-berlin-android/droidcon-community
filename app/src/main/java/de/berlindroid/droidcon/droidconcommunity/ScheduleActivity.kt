@@ -11,15 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import info.metadude.kotlin.library.droidconberlin.ApiModule
 import info.metadude.kotlin.library.droidconberlin.ApiService
 import info.metadude.kotlin.library.droidconberlin.models.Session
-import kotlinx.android.synthetic.main.activity_schedule.*
-import okhttp3.Callback
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
 
 typealias DroidconAPI = ApiService
 
-class ScheduleActivity : AppCompatActivity(){
+class ScheduleActivity : AppCompatActivity() {
 
     val apiUrl = "https://cfp.droidcon.de/"
 
@@ -30,7 +28,7 @@ class ScheduleActivity : AppCompatActivity(){
         val okHttpClient = OkHttpClient.Builder().build()
         val api = ApiModule.provideApiService(apiUrl, okHttpClient)
         val adapter = ScheduleAdapter(this)
-        api.getSessions().enqueue(object: retrofit2.Callback<List<Session>> {
+        api.getSessions().enqueue(object : retrofit2.Callback<List<Session>> {
 
             override fun onResponse(call: Call<List<Session>>?, response: Response<List<Session>>?) {
                 response?.body()?.forEach {
@@ -52,7 +50,7 @@ class ScheduleActivity : AppCompatActivity(){
 
     //TODO: Write an adapter here
 
-    class ScheduleAdapter constructor(var context: Context): RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
+    class ScheduleAdapter constructor(var context: Context) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
         lateinit var list: MutableList<de.berlindroid.droidcon.droidconcommunity.Session>
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder {
