@@ -20,16 +20,15 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.net.Uri
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.provider.MediaStore
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
-import android.graphics.Bitmap
-import android.net.Uri
-import android.preference.PreferenceManager
-import android.view.View
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -45,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         applyButton.setOnClickListener { apply() }
 
         main_button_picture.setOnClickListener { takePicture() }
-        main_button_schedule.setOnClickListener{ goToSchedule() }
+        main_button_schedule.setOnClickListener { goToSchedule() }
         tweet_dc.setOnClickListener({
             Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/droidconBerlin"))
                     .also { startActivity(it) }
@@ -83,9 +82,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun tweetDCBerlin() {
-            val intent:Intent?=null
-            packageManager.getPackageInfo("com.twitter.android", 0)
-            TODO()
+        val intent: Intent? = null
+        packageManager.getPackageInfo("com.twitter.android", 0)
+        TODO()
     }
 
     private fun goToSchedule() {
@@ -97,6 +96,7 @@ class MainActivity : AppCompatActivity() {
         } else {
             // TODO: call the actual activity
             ++counter
+
         }
     }
 

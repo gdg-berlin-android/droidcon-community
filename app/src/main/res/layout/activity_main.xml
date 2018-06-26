@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2018 GDG Community
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -139,6 +138,7 @@
         android:layout_marginTop="16dp"
         android:contentDescription="@null"
         android:minHeight="@dimen/camera_image_preview"
+        app:layout_constraintBottom_toTopOf="@id/tweet_dc"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
@@ -150,12 +150,13 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/round_button"
         android:text="@string/apply"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageButton
@@ -163,9 +164,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="22dp"
-        android:padding="@dimen/main_activity_button_padding"
         android:background="@drawable/round_button"
+        android:padding="@dimen/main_activity_button_padding"
         android:src="@drawable/ic_action_camera"
+        android:tint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/applyButton"
         app:layout_constraintEnd_toStartOf="@+id/tweet_dc"
         app:layout_constraintHorizontal_bias="0.5"
@@ -178,10 +180,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:padding="@dimen/main_activity_button_padding"
         android:background="@drawable/round_button"
-        android:text="@string/tweet_dc"
+        android:padding="@dimen/main_activity_button_padding"
         android:src="@drawable/ic_action_send"
+        android:text="@string/tweet_dc"
+        android:tint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/applyButton"
         app:layout_constraintEnd_toStartOf="@+id/main_button_schedule"
         app:layout_constraintHorizontal_bias="0.5"
@@ -192,12 +195,13 @@
         android:id="@+id/main_button_schedule"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:padding="@dimen/main_activity_button_padding"
         android:background="@drawable/round_button"
+        android:padding="@dimen/main_activity_button_padding"
         android:src="@drawable/ic_action_calendar"
-        android:layout_marginStart="22dp"
+        android:tint="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/applyButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
