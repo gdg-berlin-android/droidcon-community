@@ -158,44 +158,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <ImageButton
         android:id="@+id/main_button_picture"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="22dp"
+        android:padding="@dimen/main_activity_button_padding"
         android:background="@drawable/round_button"
-        android:text="@string/take_a_picture"
-        android:textColor="@color/white"
+        android:src="@drawable/ic_action_camera"
         app:layout_constraintBottom_toTopOf="@+id/applyButton"
         app:layout_constraintEnd_toStartOf="@+id/tweet_dc"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
 
-    <Button
+    <ImageButton
         android:id="@+id/tweet_dc"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:padding="@dimen/main_activity_button_padding"
         android:background="@drawable/round_button"
         android:text="@string/tweet_dc"
-        android:textColor="@color/white"
+        android:src="@drawable/ic_action_send"
         app:layout_constraintBottom_toTopOf="@+id/applyButton"
         app:layout_constraintEnd_toStartOf="@+id/main_button_schedule"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/main_button_picture"
         app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
 
-    <Button
+    <ImageButton
         android:id="@+id/main_button_schedule"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:padding="@dimen/main_activity_button_padding"
         android:background="@drawable/round_button"
-        android:text="@string/schedule"
-        android:textColor="@color/white"
+        android:src="@drawable/ic_action_calendar"
+        android:layout_marginStart="22dp"
         app:layout_constraintBottom_toTopOf="@+id/applyButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
