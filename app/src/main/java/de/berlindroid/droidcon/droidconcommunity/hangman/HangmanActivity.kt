@@ -18,13 +18,32 @@
 package de.berlindroid.droidcon.droidconcommunity.hangman
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.GridLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import de.berlindroid.droidcon.droidconcommunity.R
+import java.lang.StringBuilder
 
 class HangmanActivity : AppCompatActivity() {
+
+    val maxlifes = 5
+    val solutions = listOf("droidcon","android","tensorflow","kittens","databinding","halcyon","gdg","random")
+
+    var target: String = ""
+    var displayTarget = ""
+
+    lateinit var progressText : TextView
+
+    fun reset(){
+        target = solutions.shuffled().first()
+        displayTarget = target.map { " _" }.joinToString()
+        progressText.text = displayTarget
+
+        lifeCound = maxlifes
+    }
 
     private val keyboard by lazy {
         mutableMapOf<String, Button>().apply {
@@ -62,25 +81,51 @@ class HangmanActivity : AppCompatActivity() {
         }
     }
 
-    var lifeCound = 5
+    var lifeCound = maxlifes
+    set(value) {
+        field = value
+        updateUI()
+    }
 
 
-    private fun String.createButton() = Button(this@HangmanActivity).apply { text = this@createButton }
+    private fun String.createButton() = Button(this@HangmanActivity).apply {
+        text = this@createButton
+        setOnClickListener { characterPressed(this,  this@createButton) }
+    }
+
+    fun characterPressed(button: View, character: String){
+        button.isEnabled = false
+        if (target.contains(character)){
+            val indexes = mutableListOf<Int>()
+            target.forEachIndexed { index, c -> if (c.toString() == character) indexes.add(index)  }
+            val valami = StringBuilder(displayTarget)
+            indexes.forEach {
+                valami[it*2] = character.first()
+            }
+            displayTarget = valami.toString()
+            progressText.text = displayTarget
+        } else {
+            lifeCound--
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hangman)
 
+        progressText = findViewById(R.id.progress)
         findViewById<GridLayout>(R.id.keyboard).apply {
             keyboard.forEach { (_, button) ->
                 addView(button)
             }
         }
 
+        savedInstanceState?.let{reset()}
+
         findViewById<ImageView>(R.id.image).setOnClickListener({
 
             lifeCound--
-            if (lifeCound<0)  lifeCound = 5
+            if (lifeCound < 0) lifeCound = 5
 
             updateUI()
 
@@ -88,7 +133,7 @@ class HangmanActivity : AppCompatActivity() {
         })
     }
 
-    fun updateUI(){
+    fun updateUI() {
         findViewById<ImageView>(R.id.image).setImageResource(
                 when (lifeCound) {
                     0 -> R.drawable.hang5

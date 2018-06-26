@@ -48,9 +48,9 @@ class ScheduleActivity : AppCompatActivity() {
         api.getSessions().enqueue(object : retrofit2.Callback<List<Session>> {
 
             override fun onResponse(call: Call<List<Session>>?, response: Response<List<Session>>?) {
-                response?.body()?.forEach {
+                response?.body()?.let {
                     adapter.clear()
-                    adapter.addAll(transformSession(response.body()!!))
+                    adapter.addAll(transformSession(it))
                     adapter.notifyDataSetChanged()
 
                 }
