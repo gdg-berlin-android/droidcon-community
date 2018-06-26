@@ -49,7 +49,7 @@ class ScheduleActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Session>>?, response: Response<List<Session>>?) {
                 response?.body()?.forEach {
                     adapter.clear()
-                    adapter.addAll(response.body()) //TODO transform session entitz to session model and then add all. good luck have fun
+//                    adapter.addAll(response.body()) //TODO transform session entitz to session model and then add all. good luck have fun
 
                 }
             }
