@@ -38,6 +38,7 @@
 
         </activity>
         <activity android:name=".ScheduleActivity" />
+        <activity android:name=".hangman.HangmanActivity" />
         <activity android:name=".IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,9 +4,11 @@ import android.content.Intent
 import android.graphics.Color
 import com.github.paolorotolo.appintro.AppIntroFragment
 import android.os.Bundle
+import android.widget.Button
 import com.github.paolorotolo.appintro.AppIntro
 
 import androidx.fragment.app.Fragment
+import de.berlindroid.droidcon.droidconcommunity.hangman.HangmanActivity
 
 class IntroActivity : AppIntro() {
 
@@ -36,6 +38,8 @@ class IntroActivity : AppIntro() {
         // NOTE: you will probably need to ask VIBRATE permission in Manifest.
         setVibrate(true)
         setVibrateIntensity(30)
+
+//        doneButton = Button(this).apply { setOnClickListener { HangmanActivit } }
 
         //TODO enable go to next screen!
     }
