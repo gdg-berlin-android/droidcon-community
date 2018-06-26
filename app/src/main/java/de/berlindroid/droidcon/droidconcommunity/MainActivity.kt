@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         main_button_picture.setOnClickListener { takePicture() }
         main_button_schedule.setOnClickListener{ goToSchedule() }
+        tweet_dc.setOnClickListener(tweetDCBerlin())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -74,6 +75,12 @@ class MainActivity : AppCompatActivity() {
         } else {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
         }
+    }
+
+    private fun tweetDCBerlin() {
+            val intent:Intent?=null
+            packageManager.getPackageInfo("com.twitter.android", 0)
+            intent =
     }
 
     private fun goToSchedule() {

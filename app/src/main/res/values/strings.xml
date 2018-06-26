@@ -23,6 +23,7 @@
     <string name="company_label">Company:</string>
     <string name="apply">Apply</string>
     <string name="take_a_picture">Take a Picture!</string>
+    <string name="tweet_dc">Tweet DCBerlin</string>
     <string name="do_you_accept_terms_and_conditions">Do you accept terms and conditions?</string>
     <string name="schedule">Schedule</string>
 </resources>

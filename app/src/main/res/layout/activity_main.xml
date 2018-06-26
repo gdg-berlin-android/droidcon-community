@@ -172,6 +172,18 @@
         app:layout_constraintTop_toTopOf="@+id/main_button_schedule" />
 
     <Button
+        android:id="@+id/tweet_dc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_button"
+        android:text="@string/take_a_picture"
+        android:textColor="@color/white"
+        app:layout_constraintLeft_toRightOf="@id/main_button_picture"
+        app:layout_constraintTop_toTopOf="@+id/main_button_schedule" />
+
+    <Button
         android:id="@+id/main_button_schedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
