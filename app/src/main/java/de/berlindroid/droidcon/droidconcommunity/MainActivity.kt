@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         main_button_picture.setOnClickListener { takePicture() }
         main_button_schedule.setOnClickListener{ goToSchedule() }
-        tweet_dc.setOnClickListener(tweetDCBerlin())
+        tweet_dc.setOnClickListener(TODO())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity() {
     private fun tweetDCBerlin() {
             val intent:Intent?=null
             packageManager.getPackageInfo("com.twitter.android", 0)
-            intent =
+            TODO()
     }
 
     private fun goToSchedule() {
