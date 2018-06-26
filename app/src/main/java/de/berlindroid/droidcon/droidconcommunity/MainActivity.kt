@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val CAMERA_REQUEST_CODE = 1
         private const val CAMERA_RESULT_REQUEST_CODE = 2
+        private var counter = 0
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         applyButton.setOnClickListener { apply() }
 
         main_button_picture.setOnClickListener { takePicture() }
+        main_button_schedule.setOnClickListener{ goToSchedule() }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -71,6 +73,18 @@ class MainActivity : AppCompatActivity() {
             startActivityForResult(Intent(MediaStore.ACTION_IMAGE_CAPTURE), CAMERA_RESULT_REQUEST_CODE)
         } else {
             ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_REQUEST_CODE)
+        }
+    }
+
+    private fun goToSchedule() {
+        // TODO restore the counter on resume
+        if (counter === 3) {
+            counter = 0
+            // TODO: the image is not positioned well
+            imagePreview.setImageDrawable(getDrawable(R.drawable.cat))
+        } else {
+            // TODO: call the actual activity
+            ++counter
         }
     }
 
