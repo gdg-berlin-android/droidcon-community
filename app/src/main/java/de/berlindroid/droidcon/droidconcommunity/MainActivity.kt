@@ -49,9 +49,6 @@ class MainActivity : AppCompatActivity() {
             Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/droidconBerlin"))
                     .also { startActivity(it) }
         })
-        //TODO: intent to schedule activity
-        val intent = Intent(this, ScheduleActivity::class.java)
-        startActivity(intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -99,7 +96,8 @@ class MainActivity : AppCompatActivity() {
         } else {
             // TODO: call the actual activity
             ++counter
-
+            val intent = Intent(this, ScheduleActivity::class.java)
+            startActivity(intent)
         }
     }
 

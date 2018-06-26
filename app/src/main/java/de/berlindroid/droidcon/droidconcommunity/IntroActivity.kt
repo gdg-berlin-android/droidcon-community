@@ -39,11 +39,8 @@ class IntroActivity : AppIntro() {
         setVibrate(true)
         setVibrateIntensity(30)
 
-        doneButton = Button(this).apply { setOnClickListener { Intent(this@IntroActivity, HangmanActivity::class.java) } }
-        nextButton = Button(this).apply { setOnClickListener { Intent(this@IntroActivity, HangmanActivity::class.java) } }
-
         showSkipButton(true)
-        showDoneButton(true)
+        setProgressButtonEnabled(true)
 
         //TODO enable go to next screen!
     }
@@ -61,6 +58,6 @@ class IntroActivity : AppIntro() {
     override fun onDonePressed(currentFragment: Fragment) {
         super.onDonePressed(currentFragment)
         // Do something when users tap on Done button.
-        startActivity(Intent(this, HangmanActivity::class.java))
+        startActivity(Intent(this, MainActivity::class.java))
     }
 }

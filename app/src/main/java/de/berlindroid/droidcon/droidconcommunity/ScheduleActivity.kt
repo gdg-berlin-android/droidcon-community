@@ -17,16 +17,17 @@ package de.berlindroid.droidcon.droidconcommunity
 
 import android.content.Context
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import info.metadude.kotlin.library.droidconberlin.ApiModule
 import info.metadude.kotlin.library.droidconberlin.ApiService
 import info.metadude.kotlin.library.droidconberlin.models.Session
+import kotlinx.android.synthetic.main.activity_schedule.*
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
@@ -37,8 +38,8 @@ class ScheduleActivity : AppCompatActivity() {
 
     val apiUrl = "https://cfp.droidcon.de/"
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_schedule)
 
         val okHttpClient = OkHttpClient.Builder().build()
@@ -49,7 +50,8 @@ class ScheduleActivity : AppCompatActivity() {
             override fun onResponse(call: Call<List<Session>>?, response: Response<List<Session>>?) {
                 response?.body()?.forEach {
                     adapter.clear()
-//                    adapter.addAll(response.body()) //TODO transform session entitz to session model and then add all. good luck have fun
+                    adapter.addAll(transformSession(response.body()!!))
+                    adapter.notifyDataSetChanged()
 
                 }
             }
@@ -60,14 +62,22 @@ class ScheduleActivity : AppCompatActivity() {
 
         })
 
-//        schedule_recycler_view.adapter
+        schedule_recycler_view.adapter = adapter
+        schedule_recycler_view.layoutManager = LinearLayoutManager(this)
         //The idea is to have the schedule, we have a library which provide the Schedule of the Droidcon already imported.
     }
 
-    //TODO: Write an adapter here
+    private fun transformSession(apiSessions: List<Session>): List<de.berlindroid.droidcon.droidconcommunity.Session> {
+        return apiSessions.map {
+            de.berlindroid.droidcon.droidconcommunity.Session().apply {
+                this.title = it.title
+            }
+        }
+    }
+
 
     class ScheduleAdapter constructor(var context: Context) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
-        lateinit var list: MutableList<de.berlindroid.droidcon.droidconcommunity.Session>
+        val list: MutableList<de.berlindroid.droidcon.droidconcommunity.Session> = mutableListOf()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder {
             return ScheduleViewHolder(LayoutInflater.from(context).inflate(R.layout.item_session, parent, false))
@@ -83,8 +93,8 @@ class ScheduleActivity : AppCompatActivity() {
             list.clear()
         }
 
-        fun addAll(collection: Collection<de.berlindroid.droidcon.droidconcommunity.Session>) {
-            list.addAll(collection)
+        fun addAll(sessions: List<de.berlindroid.droidcon.droidconcommunity.Session>) {
+            list.addAll(sessions)
         }
 
         class ScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
