@@ -27,7 +27,9 @@ import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 import android.graphics.Bitmap
+import android.net.Uri
 import android.preference.PreferenceManager
+import android.view.View
 
 class MainActivity : AppCompatActivity() {
     companion object {
@@ -44,7 +46,10 @@ class MainActivity : AppCompatActivity() {
 
         main_button_picture.setOnClickListener { takePicture() }
         main_button_schedule.setOnClickListener{ goToSchedule() }
-        tweet_dc.setOnClickListener(TODO())
+        tweet_dc.setOnClickListener({
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/droidconBerlin"))
+                    .also { startActivity(it) }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

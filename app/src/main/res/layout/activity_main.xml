@@ -162,39 +162,45 @@
         android:id="@+id/main_button_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_button"
         android:text="@string/take_a_picture"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/main_button_schedule"
+        app:layout_constraintBottom_toTopOf="@+id/applyButton"
+        app:layout_constraintEnd_toStartOf="@+id/tweet_dc"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/main_button_schedule" />
+        app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
 
     <Button
         android:id="@+id/tweet_dc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_button"
-        android:text="@string/take_a_picture"
+        android:text="@string/tweet_dc"
         android:textColor="@color/white"
-        app:layout_constraintLeft_toRightOf="@id/main_button_picture"
-        app:layout_constraintTop_toTopOf="@+id/main_button_schedule" />
+        app:layout_constraintBottom_toTopOf="@+id/applyButton"
+        app:layout_constraintEnd_toStartOf="@+id/main_button_schedule"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/main_button_picture"
+        app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
 
     <Button
         android:id="@+id/main_button_schedule"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/round_button"
         android:text="@string/schedule"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/applyButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_button_picture" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/tweet_dc"
+        app:layout_constraintTop_toBottomOf="@+id/imagePreview" />
 
 
 </android.support.constraint.ConstraintLayout>
