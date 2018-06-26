@@ -30,6 +30,8 @@ import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.android.synthetic.main.activity_main.*
 
+
+// TODO: please use all your language skills to contribute translations!
 class MainActivity : AppCompatActivity() {
     companion object {
         private const val CAMERA_REQUEST_CODE = 1
@@ -120,7 +122,7 @@ class MainActivity : AppCompatActivity() {
 
 private fun TextInputLayout.validateEmptyState(): Boolean {
     return if (editText!!.text.isNullOrBlank()) {
-        error = "Please fill in"
+        error = context.getString(R.string.main_input_empty_error)
         false
     } else true
 }

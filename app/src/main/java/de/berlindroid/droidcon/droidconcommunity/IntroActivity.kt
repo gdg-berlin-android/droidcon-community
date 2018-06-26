@@ -17,11 +17,11 @@ class IntroActivity : AppIntro() {
 
         val title = resources.getString(R.string.app_name)
         // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance(title, "Welcome to our awesome community app :)", R.drawable.cat, resources.getColor(R.color.colorPrimary)))
-        addSlide(AppIntroFragment.newInstance(title, "This app is proudly created by the android devs at #DCBERLIN18", R.drawable.cat, resources.getColor(R.color.colorPrimary)))
-        addSlide(AppIntroFragment.newInstance(title, "Want to do what this app is doing...?", R.drawable.cat, resources.getColor(R.color.colorPrimary)))
-        addSlide(AppIntroFragment.newInstance(title, "¯\\_(ツ)_/¯", R.drawable.cat, resources.getColor(R.color.colorPrimary)))
-        addSlide(AppIntroFragment.newInstance(title, "I don't know!", R.drawable.cat, resources.getColor(R.color.colorPrimary)))
+        addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_1), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
+        addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_2), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
+        addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_3), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
+        addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_4), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
+        addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_5), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
 
         // Instead of fragments, you can also use our default slide
 
