@@ -17,11 +17,10 @@
 
 package de.berlindroid.droidcon.droidconcommunity.hangman
 
-import android.os.Build
 import android.os.Bundle
 import android.widget.Button
 import android.widget.GridLayout
-import androidx.annotation.RequiresApi
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import de.berlindroid.droidcon.droidconcommunity.R
 
@@ -63,6 +62,9 @@ class HangmanActivity : AppCompatActivity() {
         }
     }
 
+    var lifeCound = 5
+
+
     private fun String.createButton() = Button(this@HangmanActivity).apply { text = this@createButton }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,5 +76,28 @@ class HangmanActivity : AppCompatActivity() {
                 addView(button)
             }
         }
+
+        findViewById<ImageView>(R.id.image).setOnClickListener({
+
+            lifeCound--
+            if (lifeCound<0)  lifeCound = 5
+
+            updateUI()
+
+
+        })
+    }
+
+    fun updateUI(){
+        findViewById<ImageView>(R.id.image).setImageResource(
+                when (lifeCound) {
+                    0 -> R.drawable.hang5
+                    1 -> R.drawable.hang4
+                    2 -> R.drawable.hang3
+                    3 -> R.drawable.hang2
+                    4 -> R.drawable.hang1
+                    else -> R.drawable.hang0
+                }
+        )
     }
 }

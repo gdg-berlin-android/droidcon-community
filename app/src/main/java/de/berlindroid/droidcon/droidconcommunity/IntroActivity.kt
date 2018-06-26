@@ -39,20 +39,28 @@ class IntroActivity : AppIntro() {
         setVibrate(true)
         setVibrateIntensity(30)
 
-//        doneButton = Button(this).apply { setOnClickListener { HangmanActivit } }
+        doneButton = Button(this).apply { setOnClickListener { Intent(this@IntroActivity, HangmanActivity::class.java) } }
+        nextButton = Button(this).apply { setOnClickListener { Intent(this@IntroActivity, HangmanActivity::class.java) } }
+
+        showSkipButton(true)
+        showDoneButton(true)
 
         //TODO enable go to next screen!
     }
 
+
+
+
+
     override fun onSkipPressed(currentFragment: Fragment) {
         super.onSkipPressed(currentFragment)
         // Do something when users tap on Skip button.
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, HangmanActivity::class.java))
     }
 
     override fun onDonePressed(currentFragment: Fragment) {
         super.onDonePressed(currentFragment)
         // Do something when users tap on Done button.
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, HangmanActivity::class.java))
     }
 }
