@@ -25,6 +25,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.provider.MediaStore
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.google.android.material.textfield.TextInputLayout
@@ -50,6 +51,25 @@ class MainActivity : AppCompatActivity() {
         tweet_dc.setOnClickListener({
             Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/droidconBerlin"))
                     .also { startActivity(it) }
+        })
+
+        age_seek.max = 1_000_000
+        age_seek.progress = 30
+
+        val maxAge = 120 // years
+        age_seek.setOnSeekBarChangeListener(object: SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
+                if (progress != 0) {
+                    age.text = (maxAge / progress.toFloat()).toString()
+                }
+            }
+
+            override fun onStartTrackingTouch(p0: SeekBar?) {
+            }
+
+            override fun onStopTrackingTouch(p0: SeekBar?) {
+            }
+
         })
     }
 

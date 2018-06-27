@@ -48,6 +48,7 @@ class HangmanActivity : AppCompatActivity() {
         keyboard.values.forEach {
              it.isEnabled = true
         }
+
     }
 
     private val keyboard by lazy {
@@ -113,7 +114,7 @@ class HangmanActivity : AppCompatActivity() {
             }
         }
 
-        fluidView.fillLevel = .5f
+        updateFluid()
 
         val menuItemClickListener: MenuItem.OnMenuItemClickListener = object : MenuItem.OnMenuItemClickListener {
             override fun onMenuItemClick(p0: MenuItem?): Boolean {
@@ -151,5 +152,10 @@ class HangmanActivity : AppCompatActivity() {
                     else -> R.drawable.hang0
                 }
         )
+
+    }
+
+    fun updateFluid() {
+        fluidView.fillLevel = lifeCount / maxlifes.toFloat()
     }
 }

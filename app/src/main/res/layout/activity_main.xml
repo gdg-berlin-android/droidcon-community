@@ -61,15 +61,29 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <EditText
+
+    <LinearLayout
         android:id="@+id/ageinput"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/layoutLastName" />
+        app:layout_constraintTop_toBottomOf="@+id/layoutLastName">
+
+        <SeekBar
+            android:id="@+id/age_seek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="10"/>
+    </LinearLayout>
+
 
     <EditText
         android:id="@+id/companyInput"
