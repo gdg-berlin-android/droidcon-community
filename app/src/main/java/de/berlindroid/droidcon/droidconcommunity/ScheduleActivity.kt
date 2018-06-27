@@ -17,6 +17,7 @@ package de.berlindroid.droidcon.droidconcommunity
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,13 +72,15 @@ class ScheduleActivity : AppCompatActivity() {
         return apiSessions.map {
             de.berlindroid.droidcon.droidconcommunity.Session().apply {
                 this.title = it.title
+                this.category = it.category
+                this.room = it.room
             }
         }
     }
 
 
     class ScheduleAdapter constructor(var context: Context) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
-        val list: MutableList<de.berlindroid.droidcon.droidconcommunity.Session> = mutableListOf()
+        private val list: MutableList<de.berlindroid.droidcon.droidconcommunity.Session> = mutableListOf()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder {
             return ScheduleViewHolder(LayoutInflater.from(context).inflate(R.layout.item_session, parent, false))
@@ -101,6 +104,7 @@ class ScheduleActivity : AppCompatActivity() {
 
             fun bind(data: de.berlindroid.droidcon.droidconcommunity.Session) {
                 itemView.findViewById<TextView>(R.id.sessionName).text = data.title
+                itemView.findViewById<TextView>(R.id.roomName).text = data.category
             }
 
         }
