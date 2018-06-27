@@ -83,7 +83,7 @@ class ScheduleActivity : AppCompatActivity() {
         return apiSessions.map {
             de.berlindroid.droidcon.droidconcommunity.Session().apply {
                 val date = Calendar.getInstance()
-                date.timeInMillis = it.updated_date.toEpochSecond() * 1000
+                date.timeInMillis = it.start_iso.first().toEpochSecond() * 1000
                 this.title = it.title
                 this.category = it.category
                 this.room = it.room

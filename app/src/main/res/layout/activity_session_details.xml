@@ -51,14 +51,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/appIntroDefaultPaddingBottom"
-                tools:text="Name"/>
+                tools:text="Subtitle"/>
 
             <TextView
                 android:id="@+id/deatilsText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/appIntroDefaultPaddingBottom"
-                tools:text="Name"/>
+                tools:text="details"/>
 
         </LinearLayout>
     </ScrollView>
