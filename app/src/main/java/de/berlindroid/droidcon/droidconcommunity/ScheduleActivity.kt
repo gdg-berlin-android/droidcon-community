@@ -16,6 +16,7 @@
 package de.berlindroid.droidcon.droidconcommunity
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -28,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView
 import info.metadude.kotlin.library.droidconberlin.ApiModule
 import info.metadude.kotlin.library.droidconberlin.ApiService
 import info.metadude.kotlin.library.droidconberlin.models.Session
+import io.fabric.sdk.android.services.settings.SessionSettingsData
 import kotlinx.android.synthetic.main.activity_schedule.*
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -47,7 +49,14 @@ class ScheduleActivity : AppCompatActivity() {
 
         val okHttpClient = OkHttpClient.Builder().build()
         val api = ApiModule.provideApiService(apiUrl, okHttpClient)
-        val adapter = ScheduleAdapter(this)
+        val adapter = ScheduleAdapter(this, object : ScheduleAdapter.ItemClickListener {
+
+            override fun onClicked(session: de.berlindroid.droidcon.droidconcommunity.Session) {
+                startActivity(Intent(this@ScheduleActivity, SessionDetailsActivity::class.java)
+                        .putExtra(SessionDetailsActivity.EXTRA_SESSION, session))
+            }
+
+        })
         api.getSessions().enqueue(object : retrofit2.Callback<List<Session>> {
 
             override fun onResponse(call: Call<List<Session>>?, response: Response<List<Session>>?) {
@@ -84,7 +93,7 @@ class ScheduleActivity : AppCompatActivity() {
     }
 
 
-    class ScheduleAdapter constructor(var context: Context) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
+    class ScheduleAdapter constructor(var context: Context, val listener: ItemClickListener) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
         private val list: MutableList<de.berlindroid.droidcon.droidconcommunity.Session> = mutableListOf()
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder {
@@ -95,6 +104,9 @@ class ScheduleActivity : AppCompatActivity() {
 
         override fun onBindViewHolder(holder: ScheduleViewHolder, position: Int) {
             holder.bind(list.get(position))
+            holder.itemView.setOnClickListener {
+                listener.onClicked(list.get(position))
+            }
         }
 
         fun clear() {
@@ -113,6 +125,10 @@ class ScheduleActivity : AppCompatActivity() {
                 itemView.findViewById<TextView>(R.id.timestamp).text = data.datetime?.let { formatter.format(Date(it.timeInMillis)) }
             }
 
+        }
+
+        interface ItemClickListener {
+            fun onClicked(session: de.berlindroid.droidcon.droidconcommunity.Session)
         }
 
     }

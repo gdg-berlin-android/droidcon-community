@@ -17,11 +17,12 @@
 
 package de.berlindroid.droidcon.droidconcommunity
 
+import java.io.Serializable
 import java.time.LocalDateTime
 import java.util.*
 
 // TODO: 25/06/18 Can I haz data clazz?
-class Session {
+class Session : Serializable {
 
     var updatedDate: String? = null
     var type: String? = null
