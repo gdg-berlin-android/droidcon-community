@@ -55,33 +55,7 @@ class HangmanActivity : AppCompatActivity() {
                 put(this, createButton())
             }
 
-            "Q".addButton()
-            "W".addButton()
-            "E".addButton()
-            "R".addButton()
-            "T".addButton()
-            "Y".addButton()
-            "U".addButton()
-            "I".addButton()
-            "O".addButton()
-            "P".addButton()
-            "A".addButton()
-            "S".addButton()
-            "D".addButton()
-            "F".addButton()
-            "G".addButton()
-            "H".addButton()
-            "J".addButton()
-            "K".addButton()
-            "K".addButton()
-            "L".addButton()
-            "Z".addButton()
-            "X".addButton()
-            "C".addButton()
-            "V".addButton()
-            "B".addButton()
-            "N".addButton()
-            "M".addButton()
+            ('A'..'Z').forEach { it.toString().addButton() }
         }
     }
 

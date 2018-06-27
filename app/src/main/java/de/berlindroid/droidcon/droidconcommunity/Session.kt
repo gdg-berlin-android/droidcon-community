@@ -17,6 +17,9 @@
 
 package de.berlindroid.droidcon.droidconcommunity
 
+import java.time.LocalDateTime
+import java.util.*
+
 // TODO: 25/06/18 Can I haz data clazz?
 class Session {
 
@@ -25,7 +28,7 @@ class Session {
     var uri: String? = null
     var title: String? = null
     var label: String? = null
-    var datetime: String? = null
+    var datetime: Calendar? = null
     var startIso: List<String>? = null
     var endIso: List<String>? = null
     var roomId: List<String>? = null

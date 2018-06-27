@@ -32,6 +32,8 @@ import kotlinx.android.synthetic.main.activity_schedule.*
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
 
 typealias DroidconAPI = ApiService
 
@@ -71,10 +73,12 @@ class ScheduleActivity : AppCompatActivity() {
     private fun transformSession(apiSessions: List<Session>): List<de.berlindroid.droidcon.droidconcommunity.Session> {
         return apiSessions.map {
             de.berlindroid.droidcon.droidconcommunity.Session().apply {
+                val date = Calendar.getInstance()
+                date.timeInMillis = it.updated_date.toEpochSecond() * 1000
                 this.title = it.title
                 this.category = it.category
                 this.room = it.room
-                this.datetime = it.updated_date.toString()
+                this.datetime = date
             }
         }
     }
@@ -106,7 +110,7 @@ class ScheduleActivity : AppCompatActivity() {
             fun bind(data: de.berlindroid.droidcon.droidconcommunity.Session) {
                 itemView.findViewById<TextView>(R.id.sessionName).text = data.title
                 itemView.findViewById<TextView>(R.id.categoryName).text = data.category
-                itemView.findViewById<TextView>(R.id.timestamp).text = data.datetime
+                itemView.findViewById<TextView>(R.id.timestamp).text = data.datetime?.let { formatter.format(Date(it.timeInMillis)) }
             }
 
         }
@@ -114,3 +118,5 @@ class ScheduleActivity : AppCompatActivity() {
     }
 
 }
+
+val formatter = SimpleDateFormat()
