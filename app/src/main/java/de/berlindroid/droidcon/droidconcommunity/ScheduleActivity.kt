@@ -104,7 +104,6 @@ class ScheduleActivity : AppCompatActivity() {
 
             fun bind(data: de.berlindroid.droidcon.droidconcommunity.Session) {
                 itemView.findViewById<TextView>(R.id.sessionName).text = data.title
-                itemView.findViewById<TextView>(R.id.roomName).text = data.category
             }
 
         }

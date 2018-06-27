@@ -2,12 +2,13 @@ package de.berlindroid.droidcon.droidconcommunity
 
 import android.content.Intent
 import android.graphics.Color
-import com.github.paolorotolo.appintro.AppIntroFragment
 import android.os.Bundle
-import android.widget.Button
-import com.github.paolorotolo.appintro.AppIntro
-
+import android.os.Handler
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
+import com.github.paolorotolo.appintro.AppIntro
+import com.github.paolorotolo.appintro.AppIntroFragment
+import com.github.paolorotolo.appintro.model.SliderPage
 import de.berlindroid.droidcon.droidconcommunity.hangman.HangmanActivity
 
 class IntroActivity : AppIntro() {
@@ -15,9 +16,24 @@ class IntroActivity : AppIntro() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
         val title = resources.getString(R.string.app_name)
-        // Just set a title, description, background and image. AppIntro will do the rest.
-        addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_1), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
+        val firstSlide = SliderPage().apply {
+            this.title = title
+            description = getString(R.string.intro_1)
+            imageDrawable = R.drawable.cat
+            bgColor = resources.getColor(R.color.colorPrimary)
+        }
+        val firstScreenFragment = AppIntroFragment.newInstance(firstSlide)
+        addSlide(firstScreenFragment)
+
+        Handler().postDelayed({
+            Glide.with(this)
+                    .load("https://media3.giphy.com/media/sIIhZliB2McAo/giphy.gif")
+                    .into(firstScreenFragment.view?.findViewById(R.id.image)!!)
+
+        }, 1000)
+
         addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_2), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
         addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_3), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
         addSlide(AppIntroFragment.newInstance(title, getString(R.string.intro_4), R.drawable.cat, resources.getColor(R.color.colorPrimary)))
@@ -44,9 +60,6 @@ class IntroActivity : AppIntro() {
 
         //TODO enable go to next screen!
     }
-
-
-
 
 
     override fun onSkipPressed(currentFragment: Fragment) {
