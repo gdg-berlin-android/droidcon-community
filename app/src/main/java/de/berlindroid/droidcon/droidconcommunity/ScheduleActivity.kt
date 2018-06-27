@@ -93,19 +93,44 @@ class ScheduleActivity : AppCompatActivity() {
     }
 
 
-    class ScheduleAdapter constructor(var context: Context, val listener: ItemClickListener) : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
+    class ScheduleAdapter constructor(var context: Context, val listener: ItemClickListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+        companion object {
+            private const val TYPE_SESSION = 0
+            private const val TYPE_MAGIC = 1
+        }
         private val list: MutableList<de.berlindroid.droidcon.droidconcommunity.Session> = mutableListOf()
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder {
-            return ScheduleViewHolder(LayoutInflater.from(context).inflate(R.layout.item_session, parent, false))
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
+            TYPE_SESSION -> ScheduleViewHolder(LayoutInflater.from(context).inflate(R.layout.item_session, parent, false))
+            TYPE_MAGIC -> MagicViewHolder(LayoutInflater.from(context).inflate(R.layout.item_magic, parent, false))
+            else -> throw AssertionError("Invalid view type: $viewType")
         }
 
-        override fun getItemCount(): Int = list.size
+        override fun getItemViewType(position: Int): Int {
+            return if (list.size > 0) {
+                if (position < list.size) {
+                    TYPE_SESSION
+                } else {
+                    TYPE_MAGIC
+                }
+            } else {
+                TYPE_SESSION
+            }
+        }
 
-        override fun onBindViewHolder(holder: ScheduleViewHolder, position: Int) {
-            holder.bind(list.get(position))
-            holder.itemView.setOnClickListener {
-                listener.onClicked(list.get(position))
+        override fun getItemCount(): Int = list.size + (if (list.isEmpty()) 0 else 1)
+
+        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+            when (holder) {
+                is ScheduleViewHolder -> {
+                    holder.bind(list.get(position))
+                    holder.itemView.setOnClickListener {
+                        listener.onClicked(list.get(position))
+                    }
+                }
+                is MagicViewHolder -> {
+                    // shrug
+                }
             }
         }
 
@@ -124,6 +149,10 @@ class ScheduleActivity : AppCompatActivity() {
                 itemView.findViewById<TextView>(R.id.categoryName).text = data.category
                 itemView.findViewById<TextView>(R.id.timestamp).text = data.datetime?.let { formatter.format(Date(it.timeInMillis)) }
             }
+
+        }
+
+        class MagicViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         }
 
