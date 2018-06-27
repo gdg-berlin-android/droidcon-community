@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.emoji.widget.EmojiTextView
         android:id="@+id/progress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

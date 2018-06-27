@@ -18,7 +18,6 @@
 package de.berlindroid.droidcon.droidconcommunity.hangman
 
 import android.os.Bundle
-import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.*
@@ -36,13 +35,14 @@ class HangmanActivity : AppCompatActivity() {
 
     var target: String = ""
     var displayTarget = ""
+    val thatCharNamingIsHardOk = "*"
 
     lateinit var progressText: TextView
 
     fun reset() {
         target = solutions.shuffled().first()
-        displayTarget = target.map { "▉" }.joinToString(separator = ",")
-        progressText.text = displayTarget
+        displayTarget = target.map { thatCharNamingIsHardOk }.joinToString(separator = "")
+        progressText.text = displayTarget.replace(thatCharNamingIsHardOk, "\uD83C\uDF08")
         lifeCount = maxlifes
         keyboard.values.forEach {
              it.isEnabled = true
@@ -78,13 +78,14 @@ class HangmanActivity : AppCompatActivity() {
             val indexes = mutableListOf<Int>()
             target.forEachIndexed { index, c -> if (c.toString() == differentName) indexes.add(index) }
             val valami = StringBuilder(displayTarget)
+            // TODO: Fix Emoji here :-)
             indexes.forEach {
-                valami[it * 2] = differentName.first()
+                valami[it] = differentName.first()
             }
             displayTarget = valami.toString()
-            progressText.text = displayTarget
+            progressText.text = displayTarget.replace(thatCharNamingIsHardOk, "\uD83C\uDF08")
 
-            if (!displayTarget.contains("▉")) {
+            if (!displayTarget.contains(thatCharNamingIsHardOk)) {
                 Toast.makeText(this, "YOU WON 🏆", Toast.LENGTH_LONG).show()
                 reset()
             }

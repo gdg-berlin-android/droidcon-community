@@ -23,6 +23,10 @@ import androidx.annotation.NonNull
 import com.crashlytics.android.Crashlytics
 import timber.log.Timber
 import timber.log.Timber.DebugTree
+import androidx.emoji.text.EmojiCompat
+import androidx.emoji.bundled.BundledEmojiCompatConfig
+
+
 
 
 class App : Application() {
@@ -35,6 +39,10 @@ class App : Application() {
         } else {
             Timber.plant(CrashReportingTree())
         }
+
+        val config = BundledEmojiCompatConfig(this)
+        EmojiCompat.init(config)
+
     }
 }
 
