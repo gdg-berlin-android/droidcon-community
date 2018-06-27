@@ -74,6 +74,7 @@ class ScheduleActivity : AppCompatActivity() {
                 this.title = it.title
                 this.category = it.category
                 this.room = it.room
+                this.datetime = it.updated_date.toString()
             }
         }
     }
@@ -104,6 +105,8 @@ class ScheduleActivity : AppCompatActivity() {
 
             fun bind(data: de.berlindroid.droidcon.droidconcommunity.Session) {
                 itemView.findViewById<TextView>(R.id.sessionName).text = data.title
+                itemView.findViewById<TextView>(R.id.categoryName).text = data.category
+                itemView.findViewById<TextView>(R.id.timestamp).text = data.datetime
             }
 
         }

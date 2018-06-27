@@ -25,7 +25,7 @@ class Session {
     var uri: String? = null
     var title: String? = null
     var label: String? = null
-    var datetime: List<Datetime>? = null
+    var datetime: String? = null
     var startIso: List<String>? = null
     var endIso: List<String>? = null
     var roomId: List<String>? = null
