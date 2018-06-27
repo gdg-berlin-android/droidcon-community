@@ -19,10 +19,7 @@ package de.berlindroid.droidcon.droidconcommunity.hangman
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.GridLayout
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import de.berlindroid.droidcon.droidconcommunity.R
 import java.lang.StringBuilder
@@ -30,19 +27,21 @@ import java.lang.StringBuilder
 class HangmanActivity : AppCompatActivity() {
 
     val maxlifes = 5
-    val solutions = listOf("droidcon","android","tensorflow","kittens","databinding","halcyon","gdg","random")
+    val solutions = listOf("droidcon", "android", "tensorflow", "kittens", "databinding", "gdg", "random")
 
     var target: String = ""
     var displayTarget = ""
 
-    lateinit var progressText : TextView
+    lateinit var progressText: TextView
 
-    fun reset(){
+    fun reset() {
         target = solutions.shuffled().first()
-        displayTarget = target.map { " _" }.joinToString()
+        displayTarget = target.map { "▉" }.joinToString(separator = ",")
         progressText.text = displayTarget
-
-        lifeCound = maxlifes
+        lifeCount = maxlifes
+        keyboard.values.forEach {
+             it.isEnabled = true
+        }
     }
 
     private val keyboard by lazy {
@@ -81,31 +80,41 @@ class HangmanActivity : AppCompatActivity() {
         }
     }
 
-    var lifeCound = maxlifes
-    set(value) {
-        field = value
-        updateUI()
-    }
+    var lifeCount = maxlifes
+        set(value) {
+            field = value
+            updateUI()
+        }
 
 
     private fun String.createButton() = Button(this@HangmanActivity).apply {
         text = this@createButton
-        setOnClickListener { characterPressed(this,  this@createButton) }
+        setOnClickListener { characterPressed(this, this@createButton) }
     }
 
-    fun characterPressed(button: View, character: String){
+    fun characterPressed(button: View, character: String) {
         button.isEnabled = false
-        if (target.contains(character)){
+        val differentName = character.toLowerCase()
+        if (target.contains(differentName)) {
             val indexes = mutableListOf<Int>()
-            target.forEachIndexed { index, c -> if (c.toString() == character) indexes.add(index)  }
+            target.forEachIndexed { index, c -> if (c.toString() == differentName) indexes.add(index) }
             val valami = StringBuilder(displayTarget)
             indexes.forEach {
-                valami[it*2] = character.first()
+                valami[it * 2] = differentName.first()
             }
             displayTarget = valami.toString()
             progressText.text = displayTarget
+
+            if (!displayTarget.contains("▉")) {
+                Toast.makeText(this, "YOU WON 🏆", Toast.LENGTH_LONG).show()
+                reset()
+            }
         } else {
-            lifeCound--
+            lifeCount--
+            if (lifeCount == 0) {
+                Toast.makeText(this, "YOU LOST 😭", Toast.LENGTH_LONG).show()
+                reset()
+            }
         }
     }
 
@@ -120,12 +129,12 @@ class HangmanActivity : AppCompatActivity() {
             }
         }
 
-        savedInstanceState?.let{reset()}
-
+        savedInstanceState?.let { reset() }
+        reset()
         findViewById<ImageView>(R.id.image).setOnClickListener({
 
-            lifeCound--
-            if (lifeCound < 0) lifeCound = 5
+            lifeCount--
+            if (lifeCount < 0) lifeCount = 5
 
             updateUI()
 
@@ -135,7 +144,7 @@ class HangmanActivity : AppCompatActivity() {
 
     fun updateUI() {
         findViewById<ImageView>(R.id.image).setImageResource(
-                when (lifeCound) {
+                when (lifeCount) {
                     0 -> R.drawable.hang5
                     1 -> R.drawable.hang4
                     2 -> R.drawable.hang3

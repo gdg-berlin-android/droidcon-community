@@ -29,7 +29,7 @@
     <string name="intro_1">Willkommen bei unserer großartigen Gemeinschaftsanwendung :)</string>
     <string name="intro_2">Diese Anwendung wird gerade voller Stolz gemeinsam erstellt von den Android-Entwicklern auf der #DCBERLIN18</string>
     <string name="intro_3">Willst du wissen, was die App eigentlich tut?</string>
-    <string name="intro_4">¯\\\\_(ツ)_/¯</string>
+    <string name="intro_4">¯\\_(ツ)_/¯</string>
     <string name="intro_5">Keine Ahnung!</string>
     <string name="main_input_empty_error">Bitte ausfüllen</string>
 </resources>

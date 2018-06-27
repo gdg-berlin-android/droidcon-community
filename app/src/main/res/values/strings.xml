@@ -29,7 +29,7 @@
     <string name="intro_1">Welcome to our awesome community app :)</string>
     <string name="intro_2">This app is proudly created by the android devs at #DCBERLIN18</string>
     <string name="intro_3">Want to do what this app is doing...?</string>
-    <string name="intro_4">¯\\\\_(ツ)_/¯</string>
+    <string name="intro_4">¯\\_(ツ)_/¯</string>
     <string name="intro_5">I don\'t know!</string>
     <string name="main_input_empty_error">Please fill in</string>
 </resources>
