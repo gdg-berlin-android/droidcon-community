@@ -18,9 +18,14 @@
 package de.berlindroid.droidcon.droidconcommunity.hangman
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import com.novoda.accessibility.ActionsMenuAccessibilityDelegate
+import com.novoda.accessibility.ActionsMenuInflater
 import de.berlindroid.droidcon.droidconcommunity.R
 import java.lang.StringBuilder
 
@@ -92,8 +97,8 @@ class HangmanActivity : AppCompatActivity() {
         setOnClickListener { characterPressed(this, this@createButton) }
     }
 
-    fun characterPressed(button: View, character: String) {
-        button.isEnabled = false
+    fun characterPressed(button: View?, character: String) {
+        button?.isEnabled = false
         val differentName = character.toLowerCase()
         if (target.contains(differentName)) {
             val indexes = mutableListOf<Int>()
@@ -123,11 +128,24 @@ class HangmanActivity : AppCompatActivity() {
         setContentView(R.layout.activity_hangman)
 
         progressText = findViewById(R.id.progress)
-        findViewById<GridLayout>(R.id.keyboard).apply {
+        val keyboardView = findViewById<GridLayout>(R.id.keyboard)
+        keyboardView.apply {
             keyboard.forEach { (_, button) ->
                 addView(button)
             }
         }
+
+        val menuItemClickListener: MenuItem.OnMenuItemClickListener = object : MenuItem.OnMenuItemClickListener {
+            override fun onMenuItemClick(p0: MenuItem?): Boolean {
+                p0?.let {
+                    characterPressed(null, it.title.toString())
+                    return true
+                }
+                return false
+            }
+        }
+        val menu = ActionsMenuInflater.from(this).inflate(R.menu.keyboard, menuItemClickListener)
+        ViewCompat.setAccessibilityDelegate(keyboardView, ActionsMenuAccessibilityDelegate(resources, menu, menuItemClickListener))
 
         savedInstanceState?.let { reset() }
         reset()
