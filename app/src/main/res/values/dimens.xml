@@ -19,4 +19,5 @@
 <resources>
     <dimen name="camera_image_preview">128dp</dimen>
     <dimen name="main_activity_button_padding">10dp</dimen>
+    <dimen name="fluidRadius">9dp</dimen>
 </resources>

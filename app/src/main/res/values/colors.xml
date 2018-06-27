@@ -22,4 +22,10 @@
     <color name="colorAccent">#D81B60</color>
     <color name="black">#000</color>
     <color name="white">#FFFFFF</color>
+
+
+    <color name="fluidFrontWaveStart">#FF81DCF0</color>
+    <color name="fluidFrontWaveEnd">#FF6CF4C6</color>
+    <color name="fluidBackWaveStart">#7F81DCF0</color>
+    <color name="fluidBackWaveEnd">#7F6CF4C6</color>
 </resources>

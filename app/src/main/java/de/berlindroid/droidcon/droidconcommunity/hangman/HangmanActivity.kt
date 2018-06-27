@@ -26,6 +26,7 @@ import androidx.core.view.ViewCompat
 import com.novoda.accessibility.ActionsMenuAccessibilityDelegate
 import com.novoda.accessibility.ActionsMenuInflater
 import de.berlindroid.droidcon.droidconcommunity.R
+import kotlinx.android.synthetic.main.activity_hangman.*
 import java.lang.StringBuilder
 
 class HangmanActivity : AppCompatActivity() {
@@ -96,6 +97,8 @@ class HangmanActivity : AppCompatActivity() {
                 reset()
             }
         }
+
+        fluidView.onShake(1.0f)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -109,6 +112,8 @@ class HangmanActivity : AppCompatActivity() {
                 addView(button)
             }
         }
+
+        fluidView.fillLevel = .5f
 
         val menuItemClickListener: MenuItem.OnMenuItemClickListener = object : MenuItem.OnMenuItemClickListener {
             override fun onMenuItemClick(p0: MenuItem?): Boolean {
